@@ -166,20 +166,21 @@
     <!-- 1. 자비서 -->
     <article class="project">
       <div class="banner b1">
-        <div class="kind">KDT2604 최종 프로젝트 · 팀 무크 인더스트리</div>
+        <div class="kind">최종 프로젝트 · 팀 무크 인더스트리</div>
         <h3>자비서 (JARVISEO)</h3>
         <p>안경에 카메라를 단 착용형 AI 비서. "자비서, 저거 뭐야?" 하고 부르면 본 장면을 판단해 음성으로 답합니다.</p>
       </div>
       <div class="body">
         <div>
-          <div class="meta"><span><b>기간</b> 2026.09 ~ 2026.11</span><span><b>인원</b> 3명</span><span><b>담당</b> 호출어 · STT/TTS · 기억 검색 · AWS 배포</span></div>
+          <div class="meta"><span><b>기간</b> 2026.09.21 ~ 2026.11.03</span><span><b>인원</b> 3명</span><span><b>담당</b> 호출어 · STT/TTS · 기억 검색 · AWS 배포</span></div>
           <p class="desc">일반 안경테에 초소형 USB 카메라를 붙이고, 호출어부터 대답까지 한 번에 이어지는 파이프라인을 LangGraph 로 묶었습니다.</p>
           <div class="pipeline">호출어 감지 → 프레임 캡처 → STT → 의도 라우팅 → 객체 검출 · OCR · 기억 검색 → 지시 대상 특정 → VLM 응답 → TTS</div>
           <h4>내가 한 일</h4>
           <ul class="role">
             <li>한국어 호출어 "자비서" 분류기 커스텀 학습 (openWakeWord 방식, Colab, 6회차 반복 실험, ONNX 배포)</li>
             <li>호출어 2단계 확인: 감지 직전 구간을 다시 받아써 TV · 대화 오탐 차단</li>
-            <li>STT · TTS 음성 루프, 끼어들기, 시작음 · 종료음, 응답 지연 줄이기</li>
+            <li>STT 모델 4개를 같은 질문 20개로 비교해 선택 (16/20 · 0.9초), TTS 를 tts-1 로 바꿔 합성 도중 멈춤 10번 중 6번 → 0번</li>
+            <li>끼어들기 (읽는 중 "자비서" 부르면 약 0.1초 안에 멈춤), 시작음 · 종료음, "잠깐만요" 동안 대답 미리 합성</li>
             <li>대화 기록 기반 기억 검색 ("아까 본 그거 뭐였지?") · PostgreSQL + pgvector</li>
             <li>AWS EC2 배포 (Docker)</li>
           </ul>
@@ -195,8 +196,15 @@
             <div class="metric"><div class="v">지어낸 대답 0 / 30</div><div class="k">기억 질문 평가셋 RAG 근거율</div></div>
             <div class="metric"><div class="v">1000ms → 297ms</div><div class="k">"잠깐만요" 뒤 대답 첫 소리까지 빈틈 (합성 미리 시작)</div></div>
           </div>
+          <h4 style="margin-top:18px">팀 결과</h4>
+          <div class="metrics">
+            <div class="metric"><div class="v">대상 정답률 47.5%</div><div class="k">가리킨 물건 고르기, 처음 보는 시험 사진 40장 (처음 방식 30%)</div></div>
+            <div class="metric"><div class="v">알레르기 재현율 95.7%</div><div class="k">성분표 21장 속 알레르기 성분 139개 중 133개, 평균 3.3초</div></div>
+          </div>
           <div class="links">
+            <a class="btn" href="https://github.com/Mook-Industries" target="_blank" rel="noopener">팀 소개</a>
             <a class="btn" href="https://github.com/Mook-Industries/JARVISEO" target="_blank" rel="noopener">저장소</a>
+            <a class="btn" href="https://youtu.be/3HMGT7gajqM" target="_blank" rel="noopener">발표 영상</a>
             <a class="btn" href="https://github.com/Mook-Industries/JARVISEO/blob/main/docs/experiments.md" target="_blank" rel="noopener">실험 기록</a>
           </div>
         </div>
