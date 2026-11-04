@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문태현 | 포트폴리오</title>
+<meta name="description" content="문태현 포트폴리오 - 음성 AI, LLM 에이전트, AI 서비스 개발">
+<meta property="og:title" content="문태현 | 포트폴리오">
+<meta property="og:description" content="음성 AI와 LLM 에이전트를 실제 서비스로 만드는 개발자">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --text: #16181d; --muted: #5d6470;
+    --line: #e4e7ec; --accent: #3b5bfd; --accent-soft: #eef1ff;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115; --surface: #171a21; --text: #eceef2; --muted: #9aa3b2;
+      --line: #262b35; --accent: #7b93ff; --accent-soft: #1d2340;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px);
+        background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  nav .logo { font-weight: 800; letter-spacing: -.02em; }
+  nav ul { display: flex; gap: 22px; list-style: none; font-size: 15px; color: var(--muted); }
+  nav ul a:hover { color: var(--text); }
+
+  /* hero */
+  .hero { padding: 88px 0 56px; }
+  .hero .eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent);
+                   background: var(--accent-soft); padding: 5px 12px; border-radius: 999px; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.25; letter-spacing: -.03em; font-weight: 800; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p { margin-top: 18px; font-size: 18px; color: var(--muted); max-width: 640px; }
+  .hero .cta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600;
+         padding: 11px 18px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn svg { width: 18px; height: 18px; }
+
+  section { padding: 40px 0; }
+  h2 { font-size: 26px; letter-spacing: -.02em; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 28px; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .skill { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); }
+  .skill h3 { font-size: 15px; margin-bottom: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+
+  /* projects */
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+             box-shadow: var(--shadow); margin-bottom: 28px; }
+  .project .banner { padding: 28px 30px; color: #fff; }
+  .project .banner .kind { font-size: 13px; opacity: .85; font-weight: 600; }
+  .project .banner h3 { font-size: 28px; letter-spacing: -.02em; margin-top: 4px; }
+  .project .banner p { opacity: .92; margin-top: 6px; }
+  .b1 { background: linear-gradient(120deg, #1d2b64, #3b5bfd 60%, #6a8bff); }
+  .b2 { background: linear-gradient(120deg, #0f5132, #1f9d6b 60%, #5bd19a); }
+  .b3 { background: linear-gradient(120deg, #4a1d64, #8b3bfd 60%, #c08bff); }
+  .project .body { padding: 26px 30px 30px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+  .meta b { color: var(--text); font-weight: 600; }
+  .desc { margin-bottom: 18px; }
+  .project h4 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin: 18px 0 8px; }
+  .project h4:first-child { margin-top: 0; }
+  .project ul.role { padding-left: 18px; }
+  .project ul.role li { margin-bottom: 6px; }
+  .metrics { display: grid; gap: 10px; }
+  .metric { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--bg); }
+  .metric .v { font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+  .metric .k { font-size: 13px; color: var(--muted); }
+  .links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .links .btn { font-size: 14px; padding: 8px 14px; }
+  .pipeline { font-size: 13px; color: var(--muted); background: var(--bg); border: 1px dashed var(--line);
+              border-radius: 10px; padding: 10px 12px; margin-top: 4px; }
+
+  footer { padding: 48px 0 64px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); margin-top: 24px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 760px) {
+    nav ul { display: none; }
+    .hero { padding: 56px 0 32px; }
+    .project .body { grid-template-columns: 1fr; padding: 22px; }
+    .project .banner { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">문태현</a>
+    <ul>
+      <li><a href="#about">소개</a></li>
+      <li><a href="#skills">기술</a></li>
+      <li><a href="#projects">프로젝트</a></li>
+      <li><a href="#contact">연락</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="about">
+  <div class="wrap">
+    <span class="eyebrow">AI 서비스 개발자 · 음성 AI / LLM 에이전트</span>
+    <h1>음성 AI와 LLM 에이전트를<br><em>실제로 돌아가는 서비스</em>로 만듭니다.</h1>
+    <p>호출어 모델을 직접 학습하고, 숫자로 재고, 배포까지 이어 붙이는 일을 좋아합니다.
+       실험은 전부 기록하고, 실패한 실험도 다음 결정의 근거로 남깁니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">프로젝트 보기</a>
+      <a class="btn" href="https://github.com/Moontaehyeon01" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>기술</h2>
+    <p class="sub">프로젝트에서 직접 써 본 것만 적었습니다.</p>
+    <div class="skills">
+      <div class="skill"><h3>AI / ML</h3><div class="tags">
+        <span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span>
+        <span class="tag">Whisper</span><span class="tag">OpenAI API</span><span class="tag">Gemini</span>
+        <span class="tag">Google Colab</span></div></div>
+      <div class="skill"><h3>LLM 에이전트</h3><div class="tags">
+        <span class="tag">LangGraph</span><span class="tag">LangChain</span><span class="tag">RAG</span>
+        <span class="tag">pgvector</span><span class="tag">VLM</span></div></div>
+      <div class="skill"><h3>Backend</h3><div class="tags">
+        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Flask</span>
+        <span class="tag">Celery</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+        <span class="tag">SQLAlchemy</span><span class="tag">Socket.IO</span></div></div>
+      <div class="skill"><h3>Infra / Frontend</h3><div class="tags">
+        <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">AWS EC2 · S3</span>
+        <span class="tag">FFmpeg</span><span class="tag">React Native</span><span class="tag">TypeScript</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>프로젝트</h2>
+    <p class="sub">팀 프로젝트에서 제가 맡은 부분과 결과를 중심으로 정리했습니다.</p>
+
+    <!-- 1. 자비서 -->
+    <article class="project">
+      <div class="banner b1">
+        <div class="kind">KDT2604 최종 프로젝트 · 팀 무크 인더스트리</div>
+        <h3>자비서 (JARVISEO)</h3>
+        <p>안경에 카메라를 단 착용형 AI 비서. "자비서, 저거 뭐야?" 하고 부르면 본 장면을 판단해 음성으로 답합니다.</p>
+      </div>
+      <div class="body">
+        <div>
+          <div class="meta"><span><b>기간</b> 2026.09 ~ 2026.11</span><span><b>인원</b> 3명</span><span><b>담당</b> 음성 · 기억 검색 · 배포</span></div>
+          <p class="desc">일반 안경테에 초소형 USB 카메라를 붙이고, 호출어부터 대답까지 한 번에 이어지는 파이프라인을 LangGraph 로 묶었습니다.</p>
+          <div class="pipeline">호출어 감지 → 프레임 캡처 → STT → 의도 라우팅 → 객체 검출 · OCR · 기억 검색 → 지시 대상 특정 → VLM 응답 → TTS</div>
+          <h4>내가 한 일</h4>
+          <ul class="role">
+            <li>한국어 호출어 "자비서" 분류기 커스텀 학습 (openWakeWord 방식, Colab, 6회차 반복 실험, ONNX 배포)</li>
+            <li>호출어 2단계 확인: 감지 직전 구간을 다시 받아써 TV · 대화 오탐 차단</li>
+            <li>STT · TTS 음성 루프, 끼어들기, 시작음 · 종료음, 응답 지연 최적화</li>
+            <li>대화 기록 기반 기억 검색 ("아까 본 그거 뭐였지?") · PostgreSQL + pgvector</li>
+            <li>Docker · GitHub Actions CI · 배포</li>
+          </ul>
+          <h4>기술</h4>
+          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span><span class="tag">OpenAI STT/TTS</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL · pgvector</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
+        </div>
+        <div>
+          <h4>결과</h4>
+          <div class="metrics">
+            <div class="metric"><div class="v">FRR 100% → 5.6%</div><div class="k">조용한 곳 호출어 놓침 (기성 hey_jarvis 대비, 커스텀 6회차)</div></div>
+            <div class="metric"><div class="v">FAR 5% · 소음 FRR 12.5%</div><div class="k">비슷한 발음 오인식 / 소음 속 놓침 (임계값 0.97)</div></div>
+            <div class="metric"><div class="v">TV 1시간 48분 오탐 0회</div><div class="k">2단계 확인 적용 뒤 최종 오탐</div></div>
+            <div class="metric"><div class="v">지어낸 대답 0 / 30</div><div class="k">기억 질문 평가셋 RAG 근거율</div></div>
+            <div class="metric"><div class="v">1000ms → 297ms</div><div class="k">"잠깐만요" 뒤 대답 첫 소리까지 빈틈 (합성 미리 시작)</div></div>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/Mook-Industries/JARVISEO" target="_blank" rel="noopener">저장소</a>
+            <a class="btn" href="https://github.com/Mook-Industries/JARVISEO/blob/main/docs/experiments.md" target="_blank" rel="noopener">실험 기록</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. 선행퀘스트 -->
+    <article class="project">
+      <div class="banner b2">
+        <div class="kind">중간 프로젝트 · 팀 퀘스트 지상주의</div>
+        <h3>선행퀘스트 (Good Deed Quest)</h3>
+        <p>작은 선행을 게임 퀘스트로. AI 가 맞춤 선행을 추천하고, 사진으로 인증하면 보상과 숏폼 영상이 남는 공익 플랫폼 앱.</p>
+      </div>
+      <div class="body">
+        <div>
+          <div class="meta"><span><b>기간</b> 2026.06.26 ~ 2026.08.11</span><span><b>인원</b> 5명</span><span><b>담당</b> AI 숏폼 생성 · 마이 페이지</span></div>
+          <p class="desc">인증 사진을 고르면 AI 가 자막과 배경음악을 입혀 세로 숏폼 영상을 만들어 줍니다. 이 생성 파이프라인 전체와 앱 화면 연동을 맡았습니다.</p>
+          <div class="pipeline">Vision Agent (Gemini, OpenAI 폴백) → RAG BGM 매칭 → LLM 자막 대본 → 검증 (부적절 표현 필터) → FFmpeg 렌더 → S3 업로드</div>
+          <h4>내가 한 일</h4>
+          <ul class="role">
+            <li>LangGraph 숏폼 생성 파이프라인 설계 · 구현 (에이전트 5단계)</li>
+            <li>Celery 비동기 영상 생성, 상태 폴링 · 재생 API, presigned URL 썸네일</li>
+            <li>mood_tag 기반 BGM 매칭과 폴백 전략, Gemini 할당량 초과 시 OpenAI 폴백</li>
+            <li>배지 도메인 (모델 · 서비스 · 라우터, 카테고리 기반 자동 지급)</li>
+            <li>마이 페이지 (React Native): 퀘스트 타임라인, 칭호 · 아이템, 프로필 수정</li>
+          </ul>
+          <h4>기술</h4>
+          <div class="tags"><span class="tag">FastAPI</span><span class="tag">Celery</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">LangGraph</span><span class="tag">Gemini Vision</span><span class="tag">OpenAI</span><span class="tag">FFmpeg</span><span class="tag">AWS S3 · EC2</span><span class="tag">React Native · Expo</span></div>
+        </div>
+        <div>
+          <h4>팀 결과</h4>
+          <div class="metrics">
+            <div class="metric"><div class="v">사진 → 숏폼 자동 생성</div><div class="k">사진 선택 · AI 자막 · BGM 선택 · 렌더 · 재생까지 앱에서 한 번에</div></div>
+            <div class="metric"><div class="v">BGM 30곡 자동 매칭</div><div class="k">사진 분위기 태그로 배경음악 선택</div></div>
+            <div class="metric"><div class="v">봉사 공고 4,950건</div><div class="k">FAISS + BM25 하이브리드 검색 추천 (팀)</div></div>
+            <div class="metric"><div class="v">dev 머지 → EC2 자동 배포</div><div class="k">Docker · GitHub Actions CI/CD (팀)</div></div>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/QuestismTeam/GoodDeedQuest" target="_blank" rel="noopener">저장소</a>
+            <a class="btn" href="https://www.youtube.com/watch?v=8RYjzFgwSRk&amp;t=167s" target="_blank" rel="noopener">발표 영상</a>
+            <a class="btn" href="https://lavish-lettuce-699.notion.site/abf10f046ae6833eb15e01bd6962af3c" target="_blank" rel="noopener">기획 문서</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. If_Project -->
+    <article class="project">
+      <div class="banner b3">
+        <div class="kind">팀 프로젝트</div>
+        <h3>AI 실시간 통역 &amp; 회의 어시스턴트</h3>
+        <p>실시간으로 듣고 번역하고, 회의가 끝나면 누가 무슨 말을 했는지 나눠 요약해 주는 웹 앱.</p>
+      </div>
+      <div class="body">
+        <div>
+          <div class="meta"><span><b>기간</b> 2025.10 ~ 2025.12</span><span><b>인원</b> 3명</span><span><b>담당</b> 실시간 음성 스트리밍</span></div>
+          <p class="desc">Faster-Whisper 로 듣고 Google 번역으로 옮기며, 회의 뒤에는 WhisperX · Pyannote 로 화자를 나누고 KoBART 로 요약합니다. VRAM 2~4GB GPU 나 CPU 에서도 돌아가게 만들었습니다.</p>
+          <div class="pipeline">마이크 → Silero VAD → Faster-Whisper STT → 번역 → Socket.IO 화면 출력 → (회의 뒤) 화자 분리 → KoBART 요약</div>
+          <h4>내가 한 일</h4>
+          <ul class="role">
+            <li>실시간 오디오 스트리밍 처리 (audio_processor) 구현 · 개선</li>
+            <li>Flask-Socket.IO 웹 화면 연동 첫 버전</li>
+            <li>DB 저장 테스트, 소리 출력 장치 설정, 한국어 → 영어 번역 방향 추가</li>
+          </ul>
+          <h4>기술</h4>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Socket.IO</span><span class="tag">Faster-Whisper</span><span class="tag">Silero VAD</span><span class="tag">WhisperX</span><span class="tag">Pyannote</span><span class="tag">KoBART</span><span class="tag">SQLite</span></div>
+        </div>
+        <div>
+          <h4>특징</h4>
+          <div class="metrics">
+            <div class="metric"><div class="v">실시간 통역</div><div class="k">VAD 로 말소리만 골라 바로 받아쓰고 번역</div></div>
+            <div class="metric"><div class="v">화자 분리</div><div class="k">회의 녹음을 Speaker A · B 로 나눠 타임스탬프와 함께</div></div>
+            <div class="metric"><div class="v">긴 회의 요약</div><div class="k">Map-Reduce 방식으로 10분 넘는 회의도 요약</div></div>
+            <div class="metric"><div class="v">저사양 GPU · CPU</div><div class="k">VRAM 2~4GB 에서도 구동</div></div>
+          </div>
+          <div class="links">
+            <a class="btn" href="https://github.com/201930425/If_Project" target="_blank" rel="noopener">저장소</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <span>문태현 · <a href="https://github.com/Moontaehyeon01" target="_blank" rel="noopener">github.com/Moontaehyeon01</a></span>
+    <span>마지막 업데이트 2026.11</span>
+  </div>
+</footer>
+
+</body>
+</html>
