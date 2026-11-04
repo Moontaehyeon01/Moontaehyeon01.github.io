@@ -127,6 +127,10 @@
         <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
         GitHub
       </a>
+      <a class="btn" href="mailto:mthen@naver.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        mthen@naver.com
+      </a>
     </div>
   </div>
 </header>
@@ -248,14 +252,16 @@
       </div>
       <div class="body">
         <div>
-          <div class="meta"><span><b>기간</b> 2025.10 ~ 2025.12</span><span><b>인원</b> 3명</span><span><b>담당</b> 실시간 음성 스트리밍</span></div>
+          <div class="meta"><span><b>기간</b> 2025.10 ~ 2025.12</span><span><b>인원</b> 3명</span><span><b>담당</b> 초기 구조 · 실시간 음성 스트리밍</span></div>
           <p class="desc">Faster-Whisper 로 듣고 Google 번역으로 옮기며, 회의 뒤에는 WhisperX · Pyannote 로 화자를 나누고 KoBART 로 요약합니다. VRAM 2~4GB GPU 나 CPU 에서도 돌아가게 만들었습니다.</p>
           <div class="pipeline">마이크 → Silero VAD → Faster-Whisper STT → 번역 → Socket.IO 화면 출력 → (회의 뒤) 화자 분리 → KoBART 요약</div>
           <h4>내가 한 일</h4>
           <ul class="role">
-            <li>실시간 오디오 스트리밍 처리 (audio_processor) 구현 · 개선</li>
-            <li>Flask-Socket.IO 웹 화면 연동 첫 버전</li>
-            <li>DB 저장 테스트, 소리 출력 장치 설정, 한국어 → 영어 번역 방향 추가</li>
+            <li>첫 동작 버전 작성: Flask 서버 · Faster-Whisper 받아쓰기 · Google 번역 · SQLite 저장 · KoBART 요약 · 웹 화면 (+530줄)</li>
+            <li>webrtcvad 로 말소리만 잘라 받아쓰기, Flask-SocketIO 로 자막을 화면에 실시간 전송</li>
+            <li>스트리밍 번역: 노이즈 제거, 문장 끝 판단, 중간 번역 결과 먼저 보내기</li>
+            <li>번역 결과를 Edge-TTS 로 읽어 주기, VB-CABLE 로 영상 소리를 입력으로 잡기</li>
+            <li>번역 방향 고르기 (한국어 ↔ 영어 등) 화면 · 서버 연동</li>
           </ul>
           <h4>기술</h4>
           <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Socket.IO</span><span class="tag">Faster-Whisper</span><span class="tag">Silero VAD</span><span class="tag">WhisperX</span><span class="tag">Pyannote</span><span class="tag">KoBART</span><span class="tag">SQLite</span></div>
@@ -279,7 +285,7 @@
 
 <footer id="contact">
   <div class="wrap">
-    <span>문태현 · <a href="https://github.com/Moontaehyeon01" target="_blank" rel="noopener">github.com/Moontaehyeon01</a></span>
+    <span>문태현 · <a href="mailto:mthen@naver.com">mthen@naver.com</a> · <a href="https://github.com/Moontaehyeon01" target="_blank" rel="noopener">github.com/Moontaehyeon01</a></span>
     <span>마지막 업데이트 2026.11</span>
   </div>
 </footer>
