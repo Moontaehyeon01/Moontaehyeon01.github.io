@@ -172,19 +172,19 @@
       </div>
       <div class="body">
         <div>
-          <div class="meta"><span><b>기간</b> 2026.09 ~ 2026.11</span><span><b>인원</b> 3명</span><span><b>담당</b> 음성 · 기억 검색 · 배포</span></div>
+          <div class="meta"><span><b>기간</b> 2026.09 ~ 2026.11</span><span><b>인원</b> 3명</span><span><b>담당</b> 호출어 · STT/TTS · 기억 검색 · AWS 배포</span></div>
           <p class="desc">일반 안경테에 초소형 USB 카메라를 붙이고, 호출어부터 대답까지 한 번에 이어지는 파이프라인을 LangGraph 로 묶었습니다.</p>
           <div class="pipeline">호출어 감지 → 프레임 캡처 → STT → 의도 라우팅 → 객체 검출 · OCR · 기억 검색 → 지시 대상 특정 → VLM 응답 → TTS</div>
           <h4>내가 한 일</h4>
           <ul class="role">
             <li>한국어 호출어 "자비서" 분류기 커스텀 학습 (openWakeWord 방식, Colab, 6회차 반복 실험, ONNX 배포)</li>
             <li>호출어 2단계 확인: 감지 직전 구간을 다시 받아써 TV · 대화 오탐 차단</li>
-            <li>STT · TTS 음성 루프, 끼어들기, 시작음 · 종료음, 응답 지연 최적화</li>
+            <li>STT · TTS 음성 루프, 끼어들기, 시작음 · 종료음, 응답 지연 줄이기</li>
             <li>대화 기록 기반 기억 검색 ("아까 본 그거 뭐였지?") · PostgreSQL + pgvector</li>
-            <li>Docker · GitHub Actions CI · 배포</li>
+            <li>AWS EC2 배포 (Docker)</li>
           </ul>
           <h4>기술</h4>
-          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span><span class="tag">OpenAI STT/TTS</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL · pgvector</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span><span class="tag">OpenAI STT/TTS</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL · pgvector</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
         </div>
         <div>
           <h4>결과</h4>
