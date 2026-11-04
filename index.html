@@ -174,18 +174,19 @@
         <div>
           <div class="meta"><span><b>기간</b> 2026.09.21 ~ 2026.11.03</span><span><b>인원</b> 3명</span><span><b>담당</b> 호출어 · STT/TTS · 기억 검색 · AWS 배포</span></div>
           <p class="desc">일반 안경테에 초소형 USB 카메라를 붙이고, 호출어부터 대답까지 한 번에 이어지는 파이프라인을 LangGraph 로 묶었습니다.</p>
-          <div class="pipeline">호출어 감지 → 프레임 캡처 → STT → 의도 라우팅 → 객체 검출 · OCR · 기억 검색 → 지시 대상 특정 → VLM 응답 → TTS</div>
+          <div class="pipeline">호출어 감지 → 프레임 캡처 → STT → 의도 라우팅 → 객체 검출 · OCR · 기억 검색 → 지시 대상 특정 → VLM 응답 → TTS (성분 판정은 VLM 없이 바로 TTS)</div>
           <h4>내가 한 일</h4>
           <ul class="role">
             <li>한국어 호출어 "자비서" 분류기 커스텀 학습 (openWakeWord 방식, Colab, 6회차 반복 실험, ONNX 배포)</li>
             <li>호출어 2단계 확인: 감지 직전 구간을 다시 받아써 TV · 대화 오탐 차단</li>
+            <li>브라우저 호출어: 같은 모델을 onnxruntime-web 으로 브라우저에서 돌려 휴대폰 · 클라우드에서도 "자비서"로 호출 (노트북과 점수 차 최대 0.000011, 평소 소리는 기기 밖으로 안 나감)</li>
             <li>STT 모델 4개를 같은 질문 20개로 비교해 선택 (16/20 · 0.9초), TTS 를 tts-1 로 바꿔 합성 도중 멈춤 10번 중 6번 → 0번</li>
             <li>끼어들기 (읽는 중 "자비서" 부르면 약 0.1초 안에 멈춤), 시작음 · 종료음, "잠깐만요" 동안 대답 미리 합성</li>
             <li>대화 기록 기반 기억 검색 ("아까 본 그거 뭐였지?") · PostgreSQL + pgvector</li>
             <li>AWS EC2 배포 (Docker)</li>
           </ul>
           <h4>기술</h4>
-          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span><span class="tag">OpenAI STT/TTS</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL · pgvector</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">openWakeWord</span><span class="tag">ONNX</span><span class="tag">onnxruntime-web</span><span class="tag">OpenAI STT/TTS</span><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL · pgvector</span><span class="tag">Docker</span><span class="tag">AWS EC2</span></div>
         </div>
         <div>
           <h4>결과</h4>
@@ -263,14 +264,14 @@
       <div class="body">
         <div>
           <div class="meta"><span><b>기간</b> 2025.10 ~ 2025.12</span><span><b>인원</b> 3명</span><span><b>담당</b> 초기 구조 · 실시간 음성 스트리밍</span></div>
-          <p class="desc">Faster-Whisper 로 듣고 Google 번역으로 옮기며, 회의 뒤에는 WhisperX · Pyannote 로 화자를 나누고 KoBART 로 요약합니다. VRAM 2~4GB GPU 나 CPU 에서도 돌아가게 만들었습니다.</p>
+          <p class="desc">Faster-Whisper 로 듣고 Google 번역으로 옮기며, 회의 뒤에는 WhisperX · Pyannote 로 화자를 나누고 KoBART 로 요약합니다. VRAM 2~4GB GPU 나 CPU 에서도 돌아가도록 설계된 웹 앱입니다.</p>
           <div class="pipeline">마이크 → Silero VAD → Faster-Whisper STT → 번역 → Socket.IO 화면 출력 → (회의 뒤) 화자 분리 → KoBART 요약</div>
           <h4>내가 한 일</h4>
           <ul class="role">
             <li>첫 동작 버전 작성: Flask 서버 · Faster-Whisper 받아쓰기 · Google 번역 · SQLite 저장 · KoBART 요약 · 웹 화면 (+530줄)</li>
             <li>webrtcvad 로 말소리만 잘라 받아쓰기, Flask-SocketIO 로 자막을 화면에 실시간 전송</li>
             <li>스트리밍 번역: 노이즈 제거, 문장 끝 판단, 중간 번역 결과 먼저 보내기</li>
-            <li>번역 결과를 Edge-TTS 로 읽어 주기, VB-CABLE 로 영상 소리를 입력으로 잡기</li>
+            <li>번역 결과를 Edge-TTS 로 읽어 주기 (이후 제거), VB-CABLE 가상 오디오 입력 설정 방법 추가</li>
             <li>번역 방향 고르기 (한국어 ↔ 영어 등) 화면 · 서버 연동</li>
           </ul>
           <h4>기술</h4>
